@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reddy786 Tech Solutions
 
-## Getting Started
+Production-oriented Next.js landing page for Reddy786 Tech Solutions.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Replace branding and images
 
-To learn more about Next.js, take a look at the following resources:
+- The official logo was not supplied, so the header, footer, and favicon use clearly marked temporary visual placeholders.
+- Replace the temporary logo implementation in `src/components/Logo.tsx` and `public/favicon.svg` with the approved official artwork.
+- Industry cards use original abstract CSS graphics rather than external stock photography. Replace or supplement them in `src/components/Sections.tsx` if approved photography becomes available.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Update content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Service definitions: `src/data/services.ts`
+- Industry definitions: `src/data/industries.ts`
+- Site name, domain, and email: `src/data/siteConfig.ts`
+- Section copy and layout: `src/components/Sections.tsx`
+- Header navigation: `src/components/Header.tsx`
 
-## Deploy on Vercel
+## Contact form status
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This build intentionally has no fake form submission. The primary contact and email actions open a prefilled `mailto:` enquiry. For production, connect a validated form backend or a service such as Formspree, Resend, or SendGrid. Add server-side validation and CAPTCHA/rate limiting before accepting public submissions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Push to GitHub
+
+```bash
+git add .
+git commit -m "Create Reddy786 corporate website"
+git push origin main
+```
+
+Create the GitHub repository first if it does not exist, then set its remote:
+
+```bash
+git remote add origin https://github.com/<OWNER>/<REPOSITORY>.git
+```
+
+## Deploy with Vercel
+
+1. Import the GitHub repository at https://vercel.com/new.
+2. Keep the framework preset as Next.js and the build command as `npm run build`.
+3. Deploy; Vercel will provide a temporary HTTPS URL.
+4. Add `reddy786techsolutions.in` and `www.reddy786techsolutions.in` in the Vercel project domain settings.
+
+## Hostinger DNS
+
+In Hostinger DNS management, add the records shown in Vercel's Domains setup. Do not remove or change existing MX, SPF, DKIM, DMARC, or email routing records unless a qualified DNS administrator confirms it is required.
+
+## Production setup still required
+
+- Supply and apply the official logo.
+- Supply approved photography if required.
+- Connect a real enquiry form backend and anti-spam protection.
+- Confirm final legal, privacy, and terms text before linking or publishing those pages.
+- Verify social profile URLs before listing them.
