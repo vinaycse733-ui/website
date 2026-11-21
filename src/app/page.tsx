@@ -10,6 +10,7 @@ import {
   WhySection,
 } from "@/components/Sections";
 import { Footer } from "@/components/Footer";
+import { LocalAIAgentsSection } from "@/components/LocalAIAgents";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <LocalAIAgentsSection />
         <ServicesSection />
         <TransformationSection />
         <IndustriesSection />
