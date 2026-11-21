@@ -1,22 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Link from "next/link";
 import { Logo } from "./Logo";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services", dropdown: true },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Industries", href: "#industries" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Services", href: "/#services", dropdown: true },
+  { label: "AI Agents", href: "/solutions/local-ai-agents" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Industries", href: "/#industries" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -30,12 +33,24 @@ export function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="container header-inner">
-        <a href="#home" className="logo-link" aria-label="Reddy786 Tech Solutions home">
+        <Link href="/#home" className="logo-link" aria-label="Reddy786 Tech Solutions home">
           <Logo />
-        </a>
+        </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navItems.map((item) => (
             item.dropdown ? (
@@ -53,18 +68,18 @@ export function Header() {
                 </button>
                 {servicesOpen && (
                   <div className="dropdown-panel">
-                    <a href="#services" onClick={() => setServicesOpen(false)}>
+                    <Link href="/#services" onClick={() => setServicesOpen(false)}>
                       <span>01</span><strong>Software & Web</strong>
-                    </a>
-                    <a href="#services" onClick={() => setServicesOpen(false)}>
+                    </Link>
+                    <Link href="/#services" onClick={() => setServicesOpen(false)}>
                       <span>02</span><strong>Mobile & Product Design</strong>
-                    </a>
-                    <a href="#services" onClick={() => setServicesOpen(false)}>
+                    </Link>
+                    <Link href="/#services" onClick={() => setServicesOpen(false)}>
                       <span>03</span><strong>AI & Automation</strong>
-                    </a>
-                    <a href="#services" onClick={() => setServicesOpen(false)}>
+                    </Link>
+                    <Link href="/#services" onClick={() => setServicesOpen(false)}>
                       <span>04</span><strong>Growth & Consulting</strong>
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -75,6 +90,7 @@ export function Header() {
         </nav>
         <a className="button button-dark header-cta" href="#contact">Let&apos;s Talk</a>
         <button
+          ref={menuButtonRef}
           className="menu-button"
           type="button"
           aria-label={menuOpen ? "Close navigation" : "Open navigation"}

@@ -38,8 +38,8 @@ export const services: Service[] = [
   },
   {
     title: "AI & Intelligent Automation",
-    description: "Intelligent workflows and integrated automation designed to simplify repetitive business processes.",
-    examples: ["AI chatbot development", "Workflow automation", "CRM automation", "Business process integrations"],
+    description: "Custom local AI agents and connected automation designed to simplify repetitive business processes.",
+    examples: ["Custom local AI agents", "Private document assistants", "Workflow automation", "Business process integrations"],
     icon: Sparkles,
   },
   {

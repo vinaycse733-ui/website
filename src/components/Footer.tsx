@@ -1,5 +1,6 @@
 import { Logo } from "./Logo";
 import { siteConfig } from "@/data/siteConfig";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -11,17 +12,17 @@ export function Footer() {
         </div>
         <div>
           <h3>Services</h3>
-          <a href="#services">Software Development</a>
-          <a href="#services">Web & Mobile</a>
-          <a href="#services">AI Automation</a>
-          <a href="#services">Digital Marketing</a>
-          <a href="#services">UI/UX Design</a>
+          <Link href="/#services">Software Development</Link>
+          <Link href="/#services">Web & Mobile</Link>
+          <Link href="/solutions/local-ai-agents">Custom Local AI Agents</Link>
+          <Link href="/#services">Digital Marketing</Link>
+          <Link href="/#services">UI/UX Design</Link>
         </div>
         <div>
           <h3>Company</h3>
-          <a href="#about">About</a>
-          <a href="#industries">Industries</a>
-          <a href="#contact">Contact</a>
+          <Link href="/#about">About</Link>
+          <Link href="/#industries">Industries</Link>
+          <Link href="/#contact">Contact</Link>
         </div>
         <div>
           <h3>Contact</h3>
